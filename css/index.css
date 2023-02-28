@@ -1,0 +1,73 @@
+:root {
+  --red: #e63946;
+    --blue: #1d3557;
+    --white: #ffffff;
+    --gray1: #d9d9d9;
+    --patrol: #1285a4;
+    --blue-light: #a8dadc;
+    --black: #212121;
+    --h1-regular: 400 3.051875114440918rem/normal Poppins;
+    --h2-regular: 400 2.4412500858306885rem/normal Poppins;
+    --h3-regular: 400 1.953125rem/normal Poppins;
+    --h4-regular: 400 1.5625rem/normal Poppins;
+    --h5-regular: 400 1.25rem/normal Poppins;
+    --paragraph-large-regular: 400 1rem/1.5rem Poppins;
+    --paragraph-regular-regular: 400 0.6399999856948853rem/1.375rem Poppins;
+    --paragraph-small-regular: 400 0.5118749737739563rem/1rem Poppins;
+    --h1-bold: 700 3.051875114440918rem/normal Poppins;
+    --h2-bold: 700 2.4412500858306885rem/normal Poppins;
+    --h3-bold: 700 1.953125rem/normal Poppins;
+    --h4-bold: 700 1.5625rem/normal Poppins;
+    --h5-bold: 700 1.25rem/normal Poppins;
+    --paragraph-large-bold: 700 1rem/1.5rem Poppins;
+    --paragraph-regular-bold: 700 0.6399999856948853rem/1.375rem Poppins;
+    --paragraph-small-bold: 700 0.5118749737739563rem/1rem Poppins;
+    --paragraph-large-regular-underline: 400 1rem/1.5rem Poppins;
+    --paragraph-regular-regular-underline: 400 0.6399999856948853rem/1.375rem Poppins;
+    --paragraph-small-regular-underline: 400 0.5118749737739563rem/1rem Poppins;
+}
+
+/*PRE CONFIG*/
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Poppins, sans-serif;
+}
+
+.wrapper {
+  max-width: 312px;
+  border: 1px solid red;
+  margin: auto;
+}
+
+/*GLOBAL COMPONENTS*/
+.button {
+  padding: 16px;
+  background-color: var(--red);
+  color: var(--white);
+  text-decoration: none;
+  border-radius: 8px;
+}
+
+/*HEADER*/
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 0 16px 0;
+  align-items: center;
+}
+
+.header .logo {
+  font: var(--h4-bold);
+  color: var(--black);
+}
+
+.header i {
+  color: var(--black);
+  font-size: 24px;
+}
+
+/*HERO*/
