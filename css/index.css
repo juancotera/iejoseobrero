@@ -50,6 +50,7 @@ body {
   color: var(--white);
   text-decoration: none;
   border-radius: 8px;
+  font: var(--paragraph-large-regular);
 }
 
 /*HEADER*/
@@ -71,3 +72,89 @@ body {
 }
 
 /*HERO*/
+
+.hero .background-image {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/img/hero.jpeg");
+  border-radius: 20px;
+  background-size: cover;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 80px 0 80px 0;
+  align-items: center;
+}
+
+.hero-content h1, .hero-content p {
+  color: var(--white);
+  text-align: center;
+}
+
+/*PRESENTATION*/
+.presentation {
+  padding: 80px 0 80px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+}
+
+.presentation-text {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: start;
+}
+
+.presentation-title {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.presentation-title p {
+  font: var(--paragraph-large-bold);
+}
+
+.presentation-title h4 {
+  font: var(--h4-bold);
+}
+
+.presentation-text p {
+  font: var(--paragraph-large-regular);
+}
+
+.bases {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.bases-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.card-bases {
+  padding: 32px;
+  background-color: var(--white);
+  border-radius: 24px;
+  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.card-bases-description {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 40px;
+}
+
+.card-bases-description h5 {
+  font: var(--h5-bold);
+}
+
+.card-bases-description p {
+  font: var(--paragraph-large-regular);
+}
