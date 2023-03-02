@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <title>Document</title>
+  <style>
+    :root {
+  --red: #e63946;
+    --blue: #1d3557;
+    --white: #ffffff;
+    --gray1: #d9d9d9;
+    --patrol: #1285a4;
+    --blue-light: #a8dadc;
+    --black: #212121;
+    --h1-regular: 400 3.051875114440918rem/normal Poppins;
+    --h2-regular: 400 2.4412500858306885rem/normal Poppins;
+    --h3-regular: 400 1.953125rem/normal Poppins;
+    --h4-regular: 400 1.5625rem/normal Poppins;
+    --h5-regular: 400 1.25rem/normal Poppins;
+    --paragraph-large-regular: 400 1rem/1.5rem Poppins;
+    --paragraph-regular-regular: 400 0.6399999856948853rem/1.375rem Poppins;
+    --paragraph-small-regular: 400 0.5118749737739563rem/1rem Poppins;
+    --h1-bold: 700 3.051875114440918rem/normal Poppins;
+    --h2-bold: 700 2.4412500858306885rem/normal Poppins;
+    --h3-bold: 700 1.953125rem/normal Poppins;
+    --h4-bold: 700 1.5625rem/normal Poppins;
+    --h5-bold: 700 1.25rem/normal Poppins;
+    --paragraph-large-bold: 700 1rem/1.5rem Poppins;
+    --paragraph-regular-bold: 700 0.6399999856948853rem/1.375rem Poppins;
+    --paragraph-small-bold: 700 0.5118749737739563rem/1rem Poppins;
+    --paragraph-large-regular-underline: 400 1rem/1.5rem Poppins;
+    --paragraph-regular-regular-underline: 400 0.6399999856948853rem/1.375rem Poppins;
+    --paragraph-small-regular-underline: 400 0.5118749737739563rem/1rem Poppins;
+}
+
+/*PRE CONFIG*/
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Poppins, sans-serif;
+}
+
+.wrapper {
+  max-width: 312px;
+  /* border: 1px solid red; */
+  margin: auto;
+}
+
+.space {
+  height: 80px;
+}
+
+/*GLOBAL COMPONENTS*/
+.button {
+  padding: 16px;
+  background-color: var(--red);
+  color: var(--white);
+  text-decoration: none;
+  border-radius: 8px;
+  font: var(--paragraph-large-regular);
+}
+
+/*HEADER*/
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 0 16px 0;
+  align-items: center;
+}
+
+.header .logo {
+  font: var(--h4-bold);
+  color: var(--black);
+}
+
+.header i {
+  color: var(--black);
+  font-size: 24px;
+}
+
+/*HERO*/
+
+.hero .background-image {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/img/hero.jpeg");
+  border-radius: 20px;
+  background-size: cover;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 80px 0 80px 0;
+  align-items: center;
+}
+
+.hero-content h1, .hero-content p {
+  color: var(--white);
+  text-align: center;
+}
+
+/*PRESENTATION*/
+.presentation {
+  padding: 80px 0 80px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+}
+
+.presentation-text {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: start;
+}
+
+.presentation-title {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.presentation-title p {
+  font: var(--paragraph-large-bold);
+}
+
+.presentation-title h4 {
+  font: var(--h4-bold);
+}
+
+.presentation-text p {
+  font: var(--paragraph-large-regular);
+}
+
+.bases {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.bases-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.card-bases {
+  padding: 32px;
+  background-color: var(--white);
+  border-radius: 24px;
+  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.card-bases-description {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 40px;
+}
+
+.card-bases-description h5 {
+  font: var(--h5-bold);
+}
+
+.card-bases-description p {
+  font: var(--paragraph-large-regular);
+}
+
+/*PROJECTS*/
+.projects {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+  padding: 80px 0 80px 0;
+}
+
+.projects-description {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: center;
+}
+
+.projects-description span {
+  font: var(--h5-regular);
+}
+
+.projects-description h4 {
+  font: var(--h4-bold);
+}
+
+.projects-description p {
+  font: var(--paragraph-large-regular);
+}
+
+.projects-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cards {
+  position: relative;
+  width: 100%;
+  height: 240px;
+}
+
+.cards .cards-content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.cards .cards-content img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cards .cards-content h5 {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 45px;
+  background: rgba(0, 0, 0, 0.4);
+  text-align: center;
+  color: var(--white);
+  font: var(--h5-bold);
+  line-height: 45px;
+}
+
+/*TEAM*/
+  </style>
+</head>
+
+<body>
+  <main class="main">
+    <div class="wrapper">
+      <!-- Esto no es necesario G site tiene su propio header -->
+      <!-- <header class="header">
+        <span class="logo">IE JOSE OBRERO</span>
+        <i class="bi bi-list"></i>
+      </header> -->
+      <div class="space"></div>
+      <div class="hero">
+        <div class="background-image">
+          <div class="hero-content">
+            <h1>IE JOSE OBRERO</h1>
+            <p>Líderes en educación Técnica en la Provincia de Huarochirí</p>
+            <a href="#" class="button">Matrícula 2023</a>
+          </div>
+        </div>
+      </div>
+      <div class="presentation">
+        <div class="presentation-text">
+          <div class="presentation-title">
+            <p>NUESTROS SERVICIO</p>
+            <h4>Educación y Religión Bases Para Una Vida</h4>
+          </div>
+          <p>Nuestra casa de estudios, siempre brindará una calidad educativa para con los estudiantes. Somos una
+            Institución de
+            formación Técnica, que durante muchos años se ve demostrado en los emprendimientos y profesionales egresados
+            de esta
+            casa de estudios.</p>
+          <a href="#" class="button">Ver más</a>
+        </div>
+        <div class="bases">
+          <div class="bases-content">
+            <div class="card-bases">
+              <img src="/img/religion.png" alt="religion">
+              <div class="card-bases-description">
+                <h5>Religión</h5>
+                <p>Pilar importante para la formación en valores.</p>
+              </div>
+            </div>
+            <div class="card-bases">
+              <img src="/img/form-tecnica.png" alt="religion">
+              <div class="card-bases-description">
+                <h5>Formación Técnica</h5>
+                <p>Perfil del egresado y certificación de sus conocimientos.</p>
+              </div>
+            </div>
+          </div>
+          <div class="bases-content">
+            <div class="card-bases">
+              <img src="/img/humanidades.png" alt="religion">
+              <div class="card-bases-description">
+                <h5>Humanidades</h5>
+                <p>Conocimientos académicos importantes para la formación ciudadana.</p>
+              </div>
+            </div>
+            <div class="card-bases">
+              <img src="/img/cetpro.png" alt="religion">
+              <div class="card-bases-description">
+                <h5>CETPRO Edu. Superior</h5>
+                <p>No solo formamos en un solo nivel, formamos profesionales.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="projects">
+        <div class="projects-description">
+          <span>FUTUROS PROYECTOS</span>
+          <h4>Nuestros Casos de Estudio</h4>
+          <p>Tenemos muchos futuros proyectos por desarrollar y algunos otros que ya están siendo ejecutados y siempre
+            se necesita de un apoyo externo para poder desarrollarlos, si quieres formar parte de alguno nos puedes
+            escribir.</p>
+        </div>
+        <div class="projects-cards">
+          <div class="cards-container">
+            <div class="cards">
+              <div class="cards-content">
+                <img src="/img/workspace.jpg" alt="">
+                <h5>Espacio de concentración</h5>
+              </div>
+            </div>
+            <div class="cards">
+              <div class="cards-content">
+                <img src="/img/workspace.jpg" alt="">
+                <h5>Espacio de concentración</h5>
+              </div>
+            </div>
+          </div>
+          <div class="cards-container">
+            <div class="cards">
+              <div class="cards-content">
+                <img src="/img/workspace.jpg" alt="">
+                <h5>Espacio de concentración</h5>
+              </div>
+            </div>
+            <div class="cards">
+              <div class="cards-content">
+                <img src="/img/workspace.jpg" alt="">
+                <h5>Espacio de concentración</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="footer">
+
+  </footer>
+</body>
+
+</html>
