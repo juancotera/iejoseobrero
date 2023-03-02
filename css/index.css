@@ -35,6 +35,7 @@
 
 body {
   font-family: Poppins, sans-serif;
+  color: var(--black);
 }
 
 .wrapper {
@@ -232,3 +233,69 @@ body {
 }
 
 /*TEAM*/
+
+/*STATISTICS*/
+.statistics {
+  padding: 80px 0 80px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+}
+
+.statistics .description {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: center;
+}
+
+.statistics .description span {
+  font: var(--paragraph-large-regular);
+}
+
+.statistics .description h4 {
+  font: var(--h4-bold);
+}
+
+.statistics .description p {
+  font: var(--paragraph-large-regular);
+}
+
+.statistics .numbers {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.statistics .numbers .students {
+  color: var(--blue);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.statistics .numbers .students span {
+  font: var(--h4-bold);
+}
+
+.statistics .numbers .students p {
+  font: var(--h4-regular);
+}
+
+
+.statistics .numbers .specialty {
+  color: var(--blue);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.statistics .numbers .specialty span {
+  font: var(--h4-bold);
+}
+
+.statistics .numbers .specialty p {
+  font: var(--h4-regular);
+}
