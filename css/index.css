@@ -391,7 +391,7 @@ hr {
 
 @media (min-width: 1024px) {
   .projects {
-    padding: 80px 240px 80px 240px;
+    /* padding: 80px 240px 80px 240px; */
   }
 
   .projects-cards {
@@ -476,7 +476,7 @@ hr {
 
 @media (min-width: 1024px) {
   .team {
-    padding: 80px 240px 80px 240px;
+    /* padding: 80px 240px 80px 240px; */
   }
 
   .team .users {
