@@ -446,6 +446,8 @@ hr {
 .user-team img {
   border-radius: 20px;
   width: 312px;
+  height: 312px;
+  object-fit: cover;
   box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.15);
 }
 
