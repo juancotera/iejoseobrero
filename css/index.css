@@ -391,19 +391,26 @@ hr {
 
 @media (min-width: 1024px) {
   .projects {
-    padding: 80px 240px 80px 240px;
+
   }
 
   .projects-cards {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin: auto;
   }
 
   .cards-container .cards {
     width: 312px;
   }
 
+}
+
+@media (min-width: 1440) {
+  .projects-cards {
+      width: 60%;
+    }
 }
 
 /*TEAM*/
@@ -478,14 +485,21 @@ hr {
 
 @media (min-width: 1024px) {
   .team {
-    padding: 80px 240px 80px 240px;
+    /* padding: 80px 240px 80px 240px; */
   }
 
   .team .users {
     flex-direction: row;
     justify-content: space-between;
+    margin: auto;
   }
 
+}
+
+@media (min-width: 1440) {
+  .users {
+    width: 60%;
+  }
 }
 
 /*STATISTICS*/
