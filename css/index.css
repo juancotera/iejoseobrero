@@ -750,3 +750,209 @@ hr {
 }
 
 
+/* ==============================
+   GALERÍA DE LOGROS
+   ============================== */
+.galeria-logros {
+  padding: 80px 0;
+  background-color: var(--white);
+}
+
+.galeria-wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+}
+
+/* Encabezado */
+.galeria-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.galeria-subtitulo {
+  color: var(--red);
+  font: var(--h5-bold);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.galeria-titulo {
+  color: var(--blue);
+  font: var(--h3-bold);
+}
+
+.galeria-descripcion {
+  color: var(--black);
+  font: var(--paragraph-large-regular);
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Espacio entre categorías de la galería */
+.galeria-categoria {
+  margin-bottom: 80px; /* separa visualmente cada categoría */
+}
+
+/* Separación entre el título de la categoría y las imágenes */
+.galeria-categoria-titulo {
+  font: var(--h5-bold);
+  color: var(--blue);
+  margin-bottom: 24px; /* agrega espacio entre el título y las imágenes */
+}
+
+/* Estilo de los títulos de cada categoría */
+.galeria-categoria-titulo {
+  font: var(--h5-bold);
+  color: var(--blue);
+  text-align: center;      /* centra el título */
+  margin-bottom: 32px;     /* espacio entre el título y las imágenes */
+  margin-top: 16px;        /* agrega un poco de espacio hacia arriba */
+}
+
+
+.galeria-categoria:last-child {
+  margin-bottom: 0; /* evita espacio extra al final */
+}
+
+
+/* Cuadrícula principal */
+.galeria-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 32px;
+  justify-content: center; /* Centra el conjunto de ítems */
+  justify-items: center;   /* Centra cada ítem individual */
+  align-items: start;
+  width: 100%;
+}
+
+/* Cada ítem */
+.galeria-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: var(--white);
+  width: 100%;
+  max-width: 360px; /* mantiene proporción limpia */
+}
+
+.galeria-item:hover {
+  transform: scale(1.02);
+  box-shadow: 0px 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* Imagen */
+.galeria-imagen {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+  display: block;
+  border-radius: 20px;
+}
+
+.galeria-item:hover .galeria-imagen {
+  transform: scale(1.1);
+}
+
+/* Capa de texto (overlay) */
+.galeria-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0));
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 24px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.galeria-item:hover .galeria-overlay {
+  opacity: 1;
+}
+
+/* Textos dentro del overlay */
+.galeria-nombre {
+  font: var(--h5-bold);
+  margin-bottom: 8px;
+}
+
+.galeria-texto {
+  font: var(--paragraph-large-regular);
+  line-height: 1.3rem;
+}
+
+/* Versiones en pantallas grandes */
+@media (min-width: 768px) {
+  .galeria-imagen {
+    height: 320px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .galeria-wrapper {
+    padding: 0 88px;
+  }
+
+  .galeria-imagen {
+    height: 340px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .galeria-grid {
+    gap: 40px;
+  }
+
+  .galeria-imagen {
+    height: 360px;
+  }
+}
+
+
+.galeria-item-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.galeria-boton {
+  margin-top: 12px;
+  padding: 10px 20px;
+  background-color: #0d1b2a;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: 600;
+  text-align: center;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s ease-in-out;
+}
+
+.galeria-boton:hover {
+  background-color: #1b263b;
+  transform: translateY(-2px);
+}
+
+
+/* ==============================
+   
+   ============================== */
+
+
+   
