@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Control - Mis Módulos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --accent: #3b82f6;
+      --sidebar-bg: #1a2332;
+      --sidebar-text: rgba(255, 255, 255, 0.55);
+      --sidebar-text-hover: rgba(255, 255, 255, 0.85);
+      --sidebar-border: rgba(255, 255, 255, 0.08);
+      --bg: #f0f2f5;
+      --surface: #ffffff;
+      --border: rgba(0, 0, 0, 0.08);
+      --text: #1a1a2e;
+      --text-muted: #6b7280;
+      --info-bg: #eff6ff;
+      --info-text: #1d4ed8;
+    }
+
+    body {
+      font-family: 'DM Sans', 'Segoe UI', sans-serif;
+      display: flex;
+      height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      overflow: hidden;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 220px;
+      min-width: 220px;
+      background: var(--sidebar-bg);
+      display: flex;
+      flex-direction: column;
+      transition: width 0.3s cubic-bezier(.4, 0, .2, 1), min-width 0.3s cubic-bezier(.4, 0, .2, 1);
+      overflow: hidden;
+      position: relative;
+      z-index: 10;
+      box-shadow: 2px 0 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .sidebar.collapsed {
+      width: 52px;
+      min-width: 52px;
+    }
+
+    /* Header del sidebar - clickeable para colapsar */
+    .sidebar-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 12px 14px 16px;
+      border-bottom: 0.5px solid var(--sidebar-border);
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.15s;
+      flex-shrink: 0;
+    }
+
+    .sidebar-header:hover {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .sidebar-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      overflow: hidden;
+    }
+
+    .logo-icon {
+      width: 26px;
+      height: 26px;
+      border-radius: 7px;
+      background: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .logo-icon svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .logo-text {
+      font-size: 13px;
+      font-weight: 600;
+      color: #fff;
+      white-space: nowrap;
+      opacity: 1;
+      transition: opacity 0.15s 0.05s;
+    }
+
+    .sidebar.collapsed .logo-text {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .toggle-btn {
+      width: 22px;
+      height: 22px;
+      border: none;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 5px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.15s, transform 0.3s;
+      padding: 0;
+    }
+
+    .toggle-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .sidebar.collapsed .toggle-btn {
+      transform: rotate(180deg);
+    }
+
+    .toggle-btn svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    /* Etiqueta de sección */
+    .nav-section-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: rgba(255, 255, 255, 0.3);
+      text-transform: uppercase;
+      padding: 16px 16px 6px;
+      white-space: nowrap;
+      opacity: 1;
+      transition: opacity 0.1s;
+      flex-shrink: 0;
+    }
+
+    .sidebar.collapsed .nav-section-label {
+      opacity: 0;
+    }
+
+    /* Lista de navegación */
+    .nav-list {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: 4px 0 16px;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+    }
+
+    .nav-list::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .nav-list::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .nav-list::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 2px;
+    }
+
+    /* Botones de navegación */
+    .nav-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      padding: 9px 14px 9px 16px;
+      border: none;
+      background: none;
+      color: var(--sidebar-text);
+      font-family: inherit;
+      font-size: 13.5px;
+      font-weight: 400;
+      cursor: pointer;
+      text-align: left;
+      transition: background 0.15s, color 0.15s;
+      white-space: nowrap;
+      position: relative;
+    }
+
+    .nav-btn:hover {
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--sidebar-text-hover);
+    }
+
+    .nav-btn.active {
+      background: rgba(59, 130, 246, 0.18);
+      color: #fff;
+    }
+
+    /* Indicador activo (barra izquierda) */
+    .nav-btn.active::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 20%;
+      bottom: 20%;
+      width: 3px;
+      border-radius: 0 2px 2px 0;
+      background: var(--accent);
+    }
+
+    /* Ícono del botón (siglas) */
+    .btn-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 700;
+      flex-shrink: 0;
+      background: rgba(255, 255, 255, 0.08);
+      color: rgba(255, 255, 255, 0.7);
+      transition: background 0.15s, color 0.15s;
+      letter-spacing: 0;
+    }
+
+    .nav-btn.active .btn-icon {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    /* Etiqueta del botón */
+    .btn-label {
+      opacity: 1;
+      transition: opacity 0.1s;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .sidebar.collapsed .btn-label {
+      opacity: 0;
+      pointer-events: none;
+      width: 0;
+    }
+
+    /* Tooltip al colapsar */
+    .sidebar-tooltip {
+      position: fixed;
+      background: #1a2332;
+      color: #fff;
+      font-size: 12px;
+      font-family: 'DM Sans', sans-serif;
+      padding: 5px 10px;
+      border-radius: 6px;
+      white-space: nowrap;
+      pointer-events: none;
+      opacity: 0;
+      z-index: 9999;
+      border: 0.5px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      transition: opacity 0.15s;
+    }
+
+    .sidebar.collapsed .nav-btn:hover .sidebar-tooltip {
+      opacity: 1;
+    }
+
+    /* Área principal */
+    .main-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* Barra superior */
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      /* height: 54px; */
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .breadcrumb {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .breadcrumb span {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .active-badge {
+      font-size: 11px;
+      padding: 3px 10px;
+      border-radius: 20px;
+      background: var(--info-bg);
+      color: var(--info-text);
+      font-weight: 500;
+    }
+
+    /* Contenedor del iframe */
+    .iframe-wrapper {
+      flex: 1;
+      /* padding: 16px; */
+      display: flex;
+      overflow: hidden;
+    }
+
+    .iframe-container {
+      flex: 1;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
+    }
+
+    #visor-apps {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="sidebar" id="sidebar">
+    <!-- Header clickeable para colapsar/expandir -->
+    <div class="sidebar-header" onclick="toggleSidebar()" title="Plegar/expandir menú">
+      <div class="sidebar-logo">
+        <div class="logo-icon">
+          <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="1" y="1" width="5" height="5" rx="1.5" fill="white" opacity="0.9" />
+            <rect x="8" y="1" width="5" height="5" rx="1.5" fill="white" opacity="0.9" />
+            <rect x="1" y="8" width="5" height="5" rx="1.5" fill="white" opacity="0.5" />
+            <rect x="8" y="8" width="5" height="5" rx="1.5" fill="white" opacity="0.5" />
+          </svg>
+        </div>
+        <span class="logo-text">Panel de Gestión</span>
+      </div>
+      <button class="toggle-btn" title="Plegar menú" onclick="event.stopPropagation(); toggleSidebar()">
+        <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M7.5 2L3.5 6L7.5 10" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="nav-section-label">Aulas</div>
+
+    <div class="nav-list">
+      <button class="nav-btn active" onclick="cargarModulo(this, 'https://script.google.com/a/macros/iejoseobrero.edu.pe/s/AKfycbz15Zjwl4rS4jlY9dW2xaW1lvzvEgr5e-HQ3uL1CK_jXvth7mEMwACHDQZ3PAd3EEUt7Q/exec', 'Dashboard')">
+        <div class="btn-icon">
+          <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+            <rect x="0.5" y="0.5" width="4" height="4" rx="1" fill="currentColor" opacity="0.9" />
+            <rect x="6.5" y="0.5" width="4" height="4" rx="1" fill="currentColor" opacity="0.9" />
+            <rect x="0.5" y="6.5" width="4" height="4" rx="1" fill="currentColor" opacity="0.5" />
+            <rect x="6.5" y="6.5" width="4" height="4" rx="1" fill="currentColor" opacity="0.5" />
+          </svg>
+        </div>
+        <span class="btn-label">Dashboard</span>
+        <span class="sidebar-tooltip">Dashboard</span>
+      </button>
+
+      <button class="nav-btn"
+        onclick="cargarModulo(this, 'https://script.google.com/a/macros/iejoseobrero.edu.pe/s/AKfycbw1jxZi7dVe1y2W1BMmjL8hkMdUF71h5THertMRMa3sUCwUQi8azCE-Ar8rZAtEU_Zk/exec', '1 A')">
+        <div class="btn-icon">1A</div>
+        <span class="btn-label">1 A</span>
+        <span class="sidebar-tooltip">1 A</span>
+      </button>
+
+      <button class="nav-btn"
+        onclick="cargarModulo(this, 'https://script.google.com/a/macros/iejoseobrero.edu.pe/s/AKfycbwJQOpDSlP8UwWmcCVNjPATOXGngkMN7eVNxd3fBHVqcClYAJmyLB5AUyiEXutFe30d/exec', '1 B')">
+        <div class="btn-icon">1B</div>
+        <span class="btn-label">1 B</span>
+        <span class="sidebar-tooltip">1 B</span>
+      </button>
+
+      <button class="nav-btn"
+        onclick="cargarModulo(this, 'https://script.google.com/a/macros/iejoseobrero.edu.pe/s/AKfycbyssPrVMdUjKpRwzYsimotPH69btdA4dKZPdiDbiNQwaP70kiY2eZ5RydMsUWu1G-kD/exec', '2 A')">
+        <div class="btn-icon">2A</div>
+        <span class="btn-label">2 A</span>
+        <span class="sidebar-tooltip">2 A</span>
+      </button>
+
+      <button class="nav-btn"
+        onclick="cargarModulo(this, 'https://script.google.com/a/macros/iejoseobrero.edu.pe/s/AKfycbybCdWRWsKPdo24kiPLy-VfLvFFe3njq7aQ16tIbUm7r8iQ96f_32BnDdYRxir8t2iW/exec', '2 B')">
+        <div class="btn-icon">2B</div>
+        <span class="btn-label">2 B</span>
+        <span class="sidebar-tooltip">2 B</span>
+      </button>
+
+      <button class="nav-btn"
+        onclick="cargarModulo(this, 'https://script.google.com/a/macros/iejoseobrero.edu.pe/s/AKfycbym7iPwwrSB92G26JEBYChnYEoWa_OsPALTgeNQy8OLbPUjv1DIvTTwQBWj4FmOKjHs/exec', '3 U')">
+        <div class="btn-icon">3U</div>
+        <span class="btn-label">3 U</span>
+        <span class="sidebar-tooltip">3 U</span>
+      </button>
+
+      <button class="nav-btn"
+        onclick="cargarModulo(this, 'https://script.google.com/a/macros/iejoseobrero.edu.pe/s/AKfycbxfskb5e32cyZB5ID-ohvSlzsFH0ZUwDjtOkA85Z61E1gcu728WaUq7apHaPffLQkxX/exec', '4 A')">
+        <div class="btn-icon">4A</div>
+        <span class="btn-label">4 A</span>
+        <span class="sidebar-tooltip">4 A</span>
+      </button>
+
+      <button class="nav-btn"
+        onclick="cargarModulo(this, 'https://script.google.com/a/macros/iejoseobrero.edu.pe/s/AKfycbxmlLEfDCUyiIACPBdcEtR7jIs9itJ9DBi6QnkdLz0HFKOmxmdLGr0b8oIfX7m6CruH/exec', '4 B')">
+        <div class="btn-icon">4B</div>
+        <span class="btn-label">4 B</span>
+        <span class="sidebar-tooltip">4 B</span>
+      </button>
+
+      <button class="nav-btn"
+        onclick="cargarModulo(this, 'https://script.google.com/a/macros/iejoseobrero.edu.pe/s/AKfycbxjLdbf5Ye1Ac_OdXXP3hE6AfPp0im7K7ulxABHyRWIJ_uG-Uigi64D4154YmAAypGB/exec', '5 A')">
+        <div class="btn-icon">5A</div>
+        <span class="btn-label">5 A</span>
+        <span class="sidebar-tooltip">5 A</span>
+      </button>
+
+      <button class="nav-btn"
+        onclick="cargarModulo(this, 'https://script.google.com/a/macros/iejoseobrero.edu.pe/s/AKfycbw6KGVHO5qwtQmYhBHDYQgMx3hzUbeThHTWhhdogp1PFkSTDid1WZ0nN4u2vPjfPjAU/exec', '5 B')">
+        <div class="btn-icon">5B</div>
+        <span class="btn-label">5 B</span>
+        <span class="sidebar-tooltip">5 B</span>
+      </button>
+    </div>
+  </nav>
+
+  <main class="main-content">
+    <div class="topbar">
+      <div class="topbar-left">
+        <span class="breadcrumb">Aulas / <span id="titulo-modulo">Dashboard</span></span>
+        <span class="active-badge" id="badge-modulo">Activo</span>
+      </div>
+    </div>
+    <div class="iframe-wrapper">
+      <div class="iframe-container">
+        <iframe id="visor-apps"
+          src="https://script.google.com/a/macros/iejoseobrero.edu.pe/s/AKfycbz15Zjwl4rS4jlY9dW2xaW1lvzvEgr5e-HQ3uL1CK_jXvth7mEMwACHDQZ3PAd3EEUt7Q/exec"
+          allow="geolocation; microphone; camera">
+        </iframe>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Colapsar / expandir sidebar
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('collapsed');
+    }
+
+    // Cargar módulo en el iframe
+    function cargarModulo(elemento, url, label) {
+      const iframe = document.getElementById('visor-apps');
+      iframe.src = url;
+
+      document.getElementById('titulo-modulo').textContent = label;
+      document.getElementById('badge-modulo').textContent = label === 'Dashboard' ? 'Inicio' : 'Activo';
+
+      document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+      elemento.classList.add('active');
+    }
+
+    // Posicionar tooltips dinámicamente
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+      btn.addEventListener('mousemove', function (e) {
+        const tooltip = btn.querySelector('.sidebar-tooltip');
+        if (tooltip) {
+          tooltip.style.top = (e.clientY - 14) + 'px';
+          tooltip.style.left = '58px';
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
