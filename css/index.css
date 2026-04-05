@@ -98,7 +98,7 @@ hr {
 .header {
   display: flex;
   justify-content: space-between;
-  padding: 16px 0 16px 0;
+  padding: 16px 0;
   align-items: center;
 }
 
@@ -205,7 +205,7 @@ hr {
   display: flex;
   flex-direction: column;
   gap: 32px;
-  padding: 80px 0 80px 0;
+  padding: 80px 0;
 }
 
 .hero-content h1, .hero-content p {
@@ -235,7 +235,7 @@ hr {
 
 /*PRESENTATION*/
 .presentation {
-  padding: 80px 0 80px 0;
+  padding: 80px 0;
   display: flex;
   flex-direction: column;
   gap: 64px;
@@ -321,7 +321,7 @@ hr {
   display: flex;
   flex-direction: column;
   gap: 64px;
-  padding: 80px 0 80px 0;
+  padding: 80px 0;
 }
 
 .projects-description {
@@ -390,10 +390,6 @@ hr {
 }
 
 @media (min-width: 1024px) {
-  .projects {
-
-  }
-
   .projects-cards {
     display: flex;
     flex-direction: row;
@@ -407,10 +403,10 @@ hr {
 
 }
 
-@media (min-width: 1440) {
+@media (min-width: 1440px) {
   .projects-cards {
-      width: 60%;
-    }
+    width: 60%;
+  }
 }
 
 /*TEAM*/
@@ -418,7 +414,7 @@ hr {
   display: flex;
   flex-direction: column;
   gap: 64px;
-  padding: 80px 0 80px 0;
+  padding: 80px 0;
 }
 
 .team .description {
@@ -496,7 +492,7 @@ hr {
 
 }
 
-@media (min-width: 1440) {
+@media (min-width: 1440px) {
   .users {
     width: 60%;
   }
@@ -504,7 +500,7 @@ hr {
 
 /*STATISTICS*/
 .statistics {
-  padding: 80px 0 80px 0;
+  padding: 80px 0;
   display: flex;
   flex-direction: column;
   gap: 64px;
@@ -584,7 +580,7 @@ hr {
   display: flex;
   flex-direction: column;
   gap: 64px;
-  padding: 80px 0 80px 0;
+  padding: 80px 0;
 }
 
 .partners .description {
@@ -634,7 +630,7 @@ hr {
 
 /*EXTERN*/
 .extern {
-  padding: 80px 0 80px 0;
+  padding: 80px 0;
 }
 
 .extern .content {
@@ -668,7 +664,7 @@ hr {
   display: flex;
   flex-direction: column;
   gap: 32px;
-  padding: 80px 0 80px 0;
+  padding: 80px 0;
   color: var(--blue);
 }
 
